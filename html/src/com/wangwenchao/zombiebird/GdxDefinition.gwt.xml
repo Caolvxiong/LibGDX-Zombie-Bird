@@ -4,6 +4,8 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
 	<inherits name='ZBGame' />
+	
+	<inherits name='aurelienribon.tweenengine'/>
 
 	<entry-point class='com.wangwenchao.zombiebird.client.HtmlLauncher' />
 	

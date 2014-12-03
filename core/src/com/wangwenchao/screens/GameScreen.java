@@ -2,7 +2,6 @@ package com.wangwenchao.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.wangwenchao.gameworld.GameRenderer;
 import com.wangwenchao.gameworld.GameWorld;
 import com.wangwenchao.zbHelpers.InputHelper;
@@ -24,9 +23,9 @@ public class GameScreen implements Screen {
 		int midPointY = (int) (gameHeight / 2);
 
 		world = new GameWorld(midPointY);
+		Gdx.input.setInputProcessor(new InputHelper(world, screenWidth / gameWidth, screenHeight / gameHeight));
 		renderer = new GameRenderer(world, (int) gameHeight, midPointY);
-
-		Gdx.input.setInputProcessor(new InputHelper(world));
+		world.setRenderer(renderer);
 
 	}
 
@@ -34,12 +33,11 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		runTime += delta;
 		world.update(delta);
-		renderer.render(runTime);
+		renderer.render(delta, runTime);
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		System.out.println("GameScreen - resizing");
 	}
 
 	@Override
